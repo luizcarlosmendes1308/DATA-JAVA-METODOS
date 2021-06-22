@@ -1,0 +1,225 @@
+import java.util.Scanner;
+import java.text.DateFormat;
+import java.util.Date;
+public class Data {
+Scanner ler = new Scanner(System.in);
+
+private int dia = 0;
+private int mes = 0;
+private int ano = 0;
+
+public Data()
+{
+do {
+System.out.println("Digite o dia: ");
+dia = ler.nextInt();
+}while (dia > 31 || dia < 0 );
+do {
+System.out.println("Digite o mês: ");
+mes = ler.nextInt();
+}while(mes > 12 || mes < 0);
+do {
+System.out.println("Digite o ano: ");
+ano = ler.nextInt();
+}while (ano < 0);
+}
+public Data(int d, int m, int a)
+{
+	this.dia = d;
+	this.mes = m;
+	this.ano = a;			
+}
+public void entraDia (int d)
+{
+	this.dia = d;
+}
+public void entraMes(int m)
+{
+	this.mes = m;
+}
+public void entraAno(int a)
+{
+	this.ano = a;
+}
+public void entraDia()
+{	
+	do {
+System.out.println("Digite o dia: ");
+dia = ler.nextInt();
+}while (dia > 31 || dia < 0 );
+}
+public void entraMes()
+{
+	do {
+System.out.println("Digite o mês: ");
+mes = ler.nextInt();
+}while(mes > 12 || mes < 0);
+
+}
+public void entraAno()
+{
+	do {
+System.out.println("Digite o ano: ");
+ano = ler.nextInt();
+}while (ano < 0);
+
+}
+public int retDia(int dia)
+{
+	return dia;
+}
+
+public int getMes(int mes)
+{
+	return mes;
+}
+
+public int getAno(int ano)
+{
+	return ano;
+}
+public String mostra1 ()
+{
+       int di=this.dia;
+        int me=this.mes;
+        int an=this.ano;
+        String d;
+        String m;
+        String a;
+        String Data;
+
+            if(this.dia < 10)
+            {
+                 d = "0"+this.dia;
+            }
+            else
+                {
+                    d = ""+this.dia;
+                }
+             if(this.mes < 10)
+                {
+                    m = "0"+this.mes;
+                }
+            else
+                {
+                    m = ""+this.mes;
+                }
+            if(this.ano < 10)
+                {
+                    a = "0"+this.ano;
+                }
+            else 
+                {
+                    a = ""+this.ano;
+                }
+        return d+"/"+m+"/"+a+"";
+
+    }
+public String mostra2 ()
+{
+       int dia=this.dia;
+        int mes=this.mes;
+        int ano=this.ano;
+        String d;
+        String m="";
+        String a;
+            if(this.dia < 10)
+            {
+                 d = "0"+this.dia;
+            }
+            else
+                {
+                    d = ""+this.dia;
+                }
+            if (this.mes == 1){
+                m ="Janeiro";
+            }
+            else if (this.mes == 2){
+                m ="Fevereiro";
+            }
+            else if (this.mes == 3){
+                m ="Maio";
+            }
+            else if (this.mes == 4){
+                m ="Abril";
+            }
+            else if (this.mes == 5){
+                m ="Março";
+            }
+            else if (this.mes == 6){
+                m ="Junho";
+            }
+            else if (this.mes == 7){
+                m ="Julho";
+            }
+            else if (this.mes == 8){
+                m ="Agosto";
+            }
+            else if (this.mes == 9){
+                m ="Setembro";
+            }
+            else if (this.mes == 10){
+                m ="Outubro";
+            }
+            else if (this.mes == 11){
+                m ="Novembro";
+            }
+            else if (this.mes == 12){
+                m ="Dezembro";
+            }
+            if(this.ano < 10)
+                {
+                    a = "0"+this.ano;
+                }
+            else 
+                {
+                    a = ""+this.ano;
+                }
+        return d+"/"+m+"/"+a+"";
+}
+    
+   public boolean bissexto() {
+   if ( ( ano % 4 == 0 && ano % 100 != 0 ) || ( ano % 400 == 0 ) ){
+        return true;
+    }
+    else{
+        return false;
+    }
+}
+    public int diasTranscorridos (){
+        int di=this.dia;
+        int me=this.mes;
+        int soma=0;
+        int som=0;
+        int[] array = {31,28,31,30,31,30,31,31,30,31,30,31};
+        for(int i=1; i<this.mes; i++){
+        soma+=array[i];
+    }   
+        som=soma+this.dia;
+         if (bissexto() == true && this.mes > 2 ){ 
+         som += 1;
+    }
+        return som;
+    }
+public void apresentaDataAtual(){
+        
+       DateFormat dtformat = DateFormat.getDateInstance(DateFormat.FULL);
+        System.out.println("Data: " + dtformat.format(new Date()));
+}
+    public static void main(String[] args) {
+ Data exibir = new Data();
+ exibir.mostra1();
+ exibir.mostra2();
+ exibir.bissexto();
+ exibir.diasTranscorridos();
+ System.out.println("-----------------");
+ exibir.apresentaDataAtual();
+System.out.println("Data: " + exibir.mostra1());
+System.out.println("Data 2: " + exibir.mostra2());
+System.out.println("Ano é bissexto ? '" + exibir.bissexto()+"'");
+System.out.println("Quantidade de dias Percorridos: " + exibir.diasTranscorridos());
+System.out.println("-----------------");
+
+    }
+    
+}
